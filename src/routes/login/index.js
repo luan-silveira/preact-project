@@ -26,7 +26,8 @@ export default class Login extends Component {
 		e.preventDefault();
 
 		// let form = new FormData(document.getElementById('formLogin'));
-		fetch('http://192.168.0.11/luan/WSPlataformaESC/rest.php?class=WSTeste&method=login',{
+		let url = `${location.protocol}//${location.hostname}/WSPlataformaESC/rest.php?class=WSTeste&method=login`;
+		fetch(url, {
 			method: 'POST',
 			mode: 'cors',
 			headers: new Headers({
@@ -44,7 +45,7 @@ export default class Login extends Component {
 					this.showAlert(json.retorno);
 				}
 			}).catch(e => {
-				this.showAlert('Erro: ' + e.message);
+				this.showAlert('Erro: ' + e.message + '\n' + url);
 			});
 	}
 
